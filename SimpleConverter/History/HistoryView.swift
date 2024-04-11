@@ -1,15 +1,21 @@
-//
-//  HistoryView.swift
-//  SimpleConverter
-//
-//  Created by Oliver Ekwalla on 11/04/2024.
-//
-
 import SwiftUI
 
 struct HistoryView: View {
+    
+    @State var fruits: [String] = ["Apple"]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            NavigationView {
+                List {
+                    Section(header: Text("Today")) {
+                        ForEach(fruits, id: \.self) { fruit in
+                            Text(fruit)
+                        }
+                    }
+                }
+            }
+        }.navigationTitle("Conversion History")
     }
 }
 
