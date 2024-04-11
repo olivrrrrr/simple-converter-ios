@@ -112,6 +112,10 @@ final class ConverterViewController: UIViewController {
         }
     }
     
+    @objc private func historyButtonPressed() {
+        viewModel.historyButtonPresseed()
+    }
+    
     private func fetchCurrencyData(baseCurrency: String, secondaryCurrency: String) {
         viewModel.fetchCurrencyData(baseCurrency: baseCurrency, secondaryCurrency: secondaryCurrency)
     }
@@ -142,6 +146,11 @@ final class ConverterViewController: UIViewController {
 extension ConverterViewController {
     private func setupUI() {
         title = ConverterViewModel.Constants.title
+    
+        let historyButton = UIBarButtonItem(image: UIImage(systemName: "clock.arrow.circlepath"), style: .plain, target: self, action: #selector(historyButtonPressed))
+        historyButton.tintColor = .label
+        navigationItem.rightBarButtonItem = historyButton
+
         view.backgroundColor = .systemBackground
         
         view.addSubview(stackView)

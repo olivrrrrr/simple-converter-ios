@@ -64,6 +64,10 @@ final class ConverterViewModel {
         }
     }
     
+    func historyButtonPresseed() {
+        coordinator?.presentHistoryViewController()
+    }
+    
     func flagPressed(_ flag: Flag) {
         switch flag {
         case .first:
