@@ -28,6 +28,8 @@
 		494A63652BC8694600825371 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A63642BC8694600825371 /* CurrencyCell.swift */; };
 		494A63672BC8695600825371 /* CurrencyImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A63662BC8695600825371 /* CurrencyImageView.swift */; };
 		494A636B2BC86A0E00825371 /* API_KEY.plist in Resources */ = {isa = PBXBuildFile; fileRef = 494A636A2BC86A0E00825371 /* API_KEY.plist */; };
+		494A636E2BC880DD00825371 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A636D2BC880DD00825371 /* HistoryViewController.swift */; };
+		494A63702BC8837000825371 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A636F2BC8837000825371 /* HistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		494A63642BC8694600825371 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		494A63662BC8695600825371 /* CurrencyImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyImageView.swift; sourceTree = "<group>"; };
 		494A636A2BC86A0E00825371 /* API_KEY.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API_KEY.plist; sourceTree = "<group>"; };
+		494A636D2BC880DD00825371 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		494A636F2BC8837000825371 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				494A63582BC8682F00825371 /* Managers */,
 				494A634B2BC866B000825371 /* Converter */,
 				494A63502BC8673200825371 /* Search */,
+				494A636C2BC87EDC00825371 /* History */,
 				494A63622BC8691800825371 /* Components */,
 				494A63142BC35C2700825371 /* AppDelegate.swift */,
 				494A63162BC35C2700825371 /* SceneDelegate.swift */,
@@ -225,6 +230,15 @@
 				494A63642BC8694600825371 /* CurrencyCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		494A636C2BC87EDC00825371 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				494A636D2BC880DD00825371 /* HistoryViewController.swift */,
+				494A636F2BC8837000825371 /* HistoryView.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +378,7 @@
 				494A63522BC867B400825371 /* SearchViewController.swift in Sources */,
 				494A63572BC8680F00825371 /* DependencyProvider.swift in Sources */,
 				494A63152BC35C2700825371 /* AppDelegate.swift in Sources */,
+				494A63702BC8837000825371 /* HistoryView.swift in Sources */,
 				494A63652BC8694600825371 /* CurrencyCell.swift in Sources */,
 				494A63542BC867D000825371 /* SearchViewModel.swift in Sources */,
 				494A63672BC8695600825371 /* CurrencyImageView.swift in Sources */,
@@ -372,6 +387,7 @@
 				494A634F2BC8671E00825371 /* ConverterViewModel.swift in Sources */,
 				494A63612BC868D400825371 /* UIImage+Extension.swift in Sources */,
 				494A635F2BC868BD00825371 /* Float+Extension.swift in Sources */,
+				494A636E2BC880DD00825371 /* HistoryViewController.swift in Sources */,
 				494A635D2BC8689600825371 /* EnvironmentProviderKeyBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
