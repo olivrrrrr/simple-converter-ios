@@ -1,8 +1,8 @@
 # For more information about this configuration visit
 # https://github.com/fastlane/scan#scanfile
 
-workspace "AnyApp.xcodeproj/project.xcworkspace"
-scheme "AnyApp"
+workspace "SimpleConverter.xcodeproj/project.xcworkspace"
+scheme "SimpleConverter"
 sdk "iphonesimulator"
 device "iPhone 11"
 code_coverage true
