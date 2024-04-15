@@ -2,7 +2,6 @@
 # https://github.com/fastlane/scan#scanfile
 
 workspace "SimpleConverter.xcodeproj/project.xcworkspace"
-scheme "SimpleConverter"
 sdk "iphonesimulator"
 device "iPhone 11"
 code_coverage true
