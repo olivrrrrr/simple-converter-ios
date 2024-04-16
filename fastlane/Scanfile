@@ -4,7 +4,7 @@
 workspace "SimpleConverter.xcodeproj/project.xcworkspace"
 scheme "SimpleConverter"
 sdk "iphonesimulator"
-device "iPhone 14"
+device "Any iOS Device"
 code_coverage true
 xcargs '-parallelizeTargets'
 prelaunch_simulator true
