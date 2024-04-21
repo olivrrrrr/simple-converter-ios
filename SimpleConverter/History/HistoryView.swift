@@ -14,16 +14,14 @@ struct HistoryView: View {
     func groupByDate(savedCurrencies: [Conversion]) -> [Date: [Conversion]]  {
         let grouped = savedCurrencies.reduce(into: [Date: [Conversion]]()) { result, conversion in
             guard let date = conversion.date else { return }
-            // Round the date to ignore the time component
+    
             let calendar = Calendar.current
             let roundedDate = calendar.startOfDay(for: date)
     
-            // If the date already exists in the result, append the conversion to its array
             if var existingConversions = result[roundedDate] {
                 existingConversions.append(conversion)
                 result[roundedDate] = existingConversions
             } else {
-                // Otherwise, create a new array with the conversion and add it to the result
                 result[roundedDate] = [conversion]
             }
         }
@@ -33,7 +31,6 @@ struct HistoryView: View {
     var groupedByDate: [Date: [Conversion]] {
         return groupByDate(savedCurrencies: savedCurrencies!)
     }
-    
     
     var body: some View {
         NavigationView {
