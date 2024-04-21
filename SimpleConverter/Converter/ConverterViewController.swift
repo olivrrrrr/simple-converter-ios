@@ -139,6 +139,9 @@ final class ConverterViewController: UIViewController {
      private func numberButtonTapped(tag: Int) {
          guard let currentText = initialNumber.text else { return }
          let newText = viewModel.keypadBehaviour(tag: tag, currentText: currentText)
+         if viewModel.hasTwoDecimalPlaces(viewModel.initialNumber) {
+             CoreDataManager.shared.createConversion(date: Date(), initialCurrency: viewModel.firstCurrencyFlag, initialAmount: viewModel.initialNumber, secondaryCurrency: viewModel.secondCurrencyFlag, secondaryAmount: viewModel.secondNumber)
+         }
          updateInitialNumberLabel(text: newText)
      }
 }
