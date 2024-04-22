@@ -64,6 +64,12 @@ final class ConverterViewModel {
         }
     }
     
+    func createConversion() {
+        if hasTwoDecimalPlaces(initialNumber) {
+            CoreDataManager.shared.createConversion(date: Date(), initialCurrency: firstCurrencyFlag, initialAmount: initialNumber, secondaryCurrency: secondCurrencyFlag, secondaryAmount: secondNumber)
+        }
+    }
+    
     func historyButtonPresseed() {
         coordinator?.presentHistoryViewController()
     }

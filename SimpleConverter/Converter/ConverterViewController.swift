@@ -82,9 +82,7 @@ final class ConverterViewController: UIViewController {
             initialNumber.text?.removeAll()
         }
         numberButtonTapped(tag: tag)
-        if viewModel.hasTwoDecimalPlaces(viewModel.initialNumber) {
-            CoreDataManager.shared.createConversion(date: Date(), initialCurrency: viewModel.firstCurrencyFlag, initialAmount: viewModel.initialNumber, secondaryCurrency: viewModel.secondCurrencyFlag, secondaryAmount: viewModel.secondNumber)
-        }
+        viewModel.createConversion()
         updateSecondNumber()
     }
     

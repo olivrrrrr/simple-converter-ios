@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HistoryView: View {
     
-    @State var savedCurrencies = CoreDataManager.shared.fetchConversion()
+    @StateObject var viewModel = HistoryViewModel()
     
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -11,56 +11,56 @@ struct HistoryView: View {
         return formatter
     }()
     
-    func groupByDate(savedCurrencies: [Conversion]) -> [Date: [Conversion]]  {
-        let grouped = savedCurrencies.reduce(into: [Date: [Conversion]]()) { result, conversion in
-            guard let date = conversion.date else { return }
-    
-            let calendar = Calendar.current
-            let roundedDate = calendar.startOfDay(for: date)
-    
-            if var existingConversions = result[roundedDate] {
-                existingConversions.append(conversion)
-                result[roundedDate] = existingConversions
-            } else {
-                result[roundedDate] = [conversion]
-            }
-        }
-        return grouped
-    }
-    
-    var groupedByDate: [Date: [Conversion]] {
-        return groupByDate(savedCurrencies: savedCurrencies!)
-    }
-    
     var body: some View {
-        NavigationView {
+       // NavigationView {
             List {
-                ForEach(groupedByDate.keys.sorted(by: >), id: \.self) { date in
-                    Section(header: Text(dateFormatter.string(from: date))) {
-                        ForEach(groupedByDate[date] ?? [], id: \.self) { savedCurrency in
+                ForEach(viewModel.groupedByDate.keys.sorted(by: >), id: \.self) { date in
+                    
+                    Section(header: Text(viewModel.getFormattedDate(date: date))) {
+  
+                        ForEach(viewModel.groupedByDate[date] ?? [], id: \.self) { savedCurrency in
+                            
                             HStack(spacing: .zero) {
-                                HStack {
-                                    if let initialCurrency = savedCurrency.initialCurrency, let secondaryCurrency = savedCurrency.secondaryCurrency {
-                                        Text("\(initialCurrency) to \(secondaryCurrency)")
-                                            .bold()
-                                    }
-                                }
-                                Spacer()
-                                HStack {
-                                    if let initialAmount = savedCurrency.initialAmount, let secondaryAmount = savedCurrency.secondaryAmount {
-                                        Text(initialAmount)
-                                            .lineLimit(1)
-                                        Divider().frame(height: 20)
-                                        Text(secondaryAmount)
-                                            .lineLimit(1)
-                                    }
-                                }
+                                typeOfConversion(savedCurrency)
+                                conversionAmount(savedCurrency)
                             }
                         }
                     }
                 }
             }
-        }.navigationTitle("Conversion History")
+            .navigationTitle("Conversion History")
+            .navigationBarTitleDisplayMode(.inline)
+       // }
+    }
+    
+    // MARK: - VIEWS -
+    @ViewBuilder
+    func typeOfConversion(_ savedCurrency: Conversion) -> some View {
+        HStack {
+            if let initialCurrency = savedCurrency.initialCurrency,
+               let secondaryCurrency = savedCurrency.secondaryCurrency {
+                Text("\(initialCurrency) to \(secondaryCurrency)")
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func conversionAmount(_ savedCurrency: Conversion) -> some View {
+        HStack {
+            if let initialAmount = savedCurrency.initialAmount,
+               let secondaryAmount = savedCurrency.secondaryAmount {
+                Text(initialAmount)
+                    .lineLimit(1)
+                
+                Divider()
+                    .frame(height: 20)
+                
+                Text(secondaryAmount)
+                    .lineLimit(1)
+            }
+        }
     }
 }
 

@@ -32,6 +32,7 @@
 		494A63702BC8837000825371 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494A636F2BC8837000825371 /* HistoryView.swift */; };
 		49758BF72BD4470C00F8F96E /* MyData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49758BF52BD4470B00F8F96E /* MyData.xcdatamodeld */; };
 		499E7E2E2BD454A10016BBA8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E7E2D2BD454A10016BBA8 /* CoreDataManager.swift */; };
+		49CD261D2BD5BABE00B63814 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD261C2BD5BABE00B63814 /* HistoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		494A636F2BC8837000825371 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		49758BF62BD4470B00F8F96E /* MyData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyData.xcdatamodel; sourceTree = "<group>"; };
 		499E7E2D2BD454A10016BBA8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		49CD261C2BD5BABE00B63814 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +245,7 @@
 			children = (
 				494A636D2BC880DD00825371 /* HistoryViewController.swift */,
 				494A636F2BC8837000825371 /* HistoryView.swift */,
+				49CD261C2BD5BABE00B63814 /* HistoryViewModel.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				494A63672BC8695600825371 /* CurrencyImageView.swift in Sources */,
 				494A634D2BC866FD00825371 /* ConverterViewController.swift in Sources */,
 				499E7E2E2BD454A10016BBA8 /* CoreDataManager.swift in Sources */,
+				49CD261D2BD5BABE00B63814 /* HistoryViewModel.swift in Sources */,
 				494A63172BC35C2700825371 /* SceneDelegate.swift in Sources */,
 				494A634F2BC8671E00825371 /* ConverterViewModel.swift in Sources */,
 				494A63612BC868D400825371 /* UIImage+Extension.swift in Sources */,
