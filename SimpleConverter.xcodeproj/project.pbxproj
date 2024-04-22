@@ -33,6 +33,7 @@
 		49758BF72BD4470C00F8F96E /* MyData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49758BF52BD4470B00F8F96E /* MyData.xcdatamodeld */; };
 		499E7E2E2BD454A10016BBA8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E7E2D2BD454A10016BBA8 /* CoreDataManager.swift */; };
 		49CD261D2BD5BABE00B63814 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CD261C2BD5BABE00B63814 /* HistoryViewModel.swift */; };
+		49CD261B2BD51E7300B63814 /* Privacy Policy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 49CD261A2BD51E7300B63814 /* Privacy Policy.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		49758BF62BD4470B00F8F96E /* MyData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyData.xcdatamodel; sourceTree = "<group>"; };
 		499E7E2D2BD454A10016BBA8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		49CD261C2BD5BABE00B63814 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		49CD261A2BD51E7300B63814 /* Privacy Policy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Privacy Policy.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				494A63142BC35C2700825371 /* AppDelegate.swift */,
 				494A63162BC35C2700825371 /* SceneDelegate.swift */,
 				494A631D2BC35C2800825371 /* Assets.xcassets */,
+				49CD261A2BD51E7300B63814 /* Privacy Policy.txt */,
 				494A63222BC35C2800825371 /* Info.plist */,
 				494A636A2BC86A0E00825371 /* API_KEY.plist */,
 				49758BF52BD4470B00F8F96E /* MyData.xcdatamodeld */,
@@ -356,6 +359,7 @@
 			files = (
 				494A631E2BC35C2800825371 /* Assets.xcassets in Resources */,
 				494A636B2BC86A0E00825371 /* API_KEY.plist in Resources */,
+				49CD261B2BD51E7300B63814 /* Privacy Policy.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
