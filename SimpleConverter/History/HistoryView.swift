@@ -6,19 +6,21 @@ struct HistoryView: View {
 
     var body: some View {
         List {
-            ForEach(Array(viewModel.groupByDate()), id: \.0) { date, currencies in
-                    Section(header: Text(viewModel.getFormattedDate(date: date))) {
-                        ForEach(currencies, id: \.self) { savedCurrency in
-                            HStack(spacing: .zero) {
-                                typeOfConversion(savedCurrency)
-                                conversionAmount(savedCurrency)
-                            }
+            ForEach(viewModel. groupByDateAndSort(), id: \.0) { tuple in
+                let (date, currencies) = tuple
+                
+                Section(header: Text(viewModel.getFormattedDate(date: date))) {
+                    ForEach(currencies, id: \.self) { savedCurrency in
+                        HStack(spacing: .zero) {
+                            typeOfConversion(savedCurrency)
+                            conversionAmount(savedCurrency)
                         }
                     }
                 }
             }
-            .navigationTitle(HistoryViewModel.Constants.title)
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationTitle(HistoryViewModel.Constants.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     // MARK: - VIEWS

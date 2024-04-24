@@ -21,21 +21,28 @@ final class HistoryViewModel: ObservableObject {
         return dateFormatter.string(from: date)
     }
     
-    func groupByDate() -> [Date: [Conversion]]  {
-        guard let savedCurrencies = fetchConversion() else { return [Date(): [Conversion]()]}
-        let grouped = savedCurrencies.reduce(into: [Date: [Conversion]]()) { result, conversion in
+    func groupByDateAndSort() -> [(Date, [Conversion])] {
+        guard let savedCurrencies = fetchConversion() else { return [] }
+        
+        var grouped: [Date: [Conversion]] = [:]
+        
+        savedCurrencies.forEach { conversion in
             guard let date = conversion.date else { return }
-    
             let calendar = Calendar.current
             let roundedDate = calendar.startOfDay(for: date)
-    
-            if var existingConversions = result[roundedDate] {
+            
+            if var existingConversions = grouped[roundedDate] {
                 existingConversions.append(conversion)
-                result[roundedDate] = existingConversions
+                grouped[roundedDate] = existingConversions
             } else {
-                result[roundedDate] = [conversion]
+                grouped[roundedDate] = [conversion]
             }
         }
-        return Dictionary(uniqueKeysWithValues: grouped.sorted { $1.key > $0.key })
+        
+        let sortedGrouped = grouped.sorted(by: { $0.key > $1.key })
+
+        let sortedArray = sortedGrouped.map { ($0.key, $0.value) }
+        
+        return sortedArray
     }
 }
