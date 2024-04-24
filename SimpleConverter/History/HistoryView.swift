@@ -3,23 +3,12 @@ import SwiftUI
 struct HistoryView: View {
     
     @StateObject var viewModel = HistoryViewModel()
-    
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
-    
+
     var body: some View {
-       // NavigationView {
-            List {
-                ForEach(viewModel.groupedByDate.keys.sorted(by: >), id: \.self) { date in
-                    
+        List {
+            ForEach(Array(viewModel.groupByDate()), id: \.0) { date, currencies in
                     Section(header: Text(viewModel.getFormattedDate(date: date))) {
-  
-                        ForEach(viewModel.groupedByDate[date] ?? [], id: \.self) { savedCurrency in
-                            
+                        ForEach(currencies, id: \.self) { savedCurrency in
                             HStack(spacing: .zero) {
                                 typeOfConversion(savedCurrency)
                                 conversionAmount(savedCurrency)
@@ -28,12 +17,11 @@ struct HistoryView: View {
                     }
                 }
             }
-            .navigationTitle("Conversion History")
+            .navigationTitle(HistoryViewModel.Constants.title)
             .navigationBarTitleDisplayMode(.inline)
-       // }
     }
     
-    // MARK: - VIEWS -
+    // MARK: - VIEWS
     @ViewBuilder
     func typeOfConversion(_ savedCurrency: Conversion) -> some View {
         HStack {

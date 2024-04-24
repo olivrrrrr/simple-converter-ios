@@ -2,23 +2,16 @@ import Foundation
 
 final class HistoryViewModel: ObservableObject {
     
+    enum Constants {
+       static let title = "Conversion History"
+    }
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .none
         return formatter
     }()
-    
-    var groupedByDate: [Date: [Conversion]] {
-        guard let savedCurrencies = fetchConversion() else { return [Date(): [Conversion]()]}
-        return groupByDate(savedCurrencies: savedCurrencies)
-    }
-    
-    var groupedByDateAndSorted: [Date: [Conversion]] {
-        guard let savedCurrencies = fetchConversion() else { return [Date(): [Conversion]()]}
-       // return groupByDate(savedCurrencies: savedCurrencies).sorted(by: >)
-        return groupByDate(savedCurrencies: savedCurrencies)
-    }
     
     func fetchConversion() -> [Conversion]?  {
         CoreDataManager.shared.fetchConversion()
@@ -28,7 +21,8 @@ final class HistoryViewModel: ObservableObject {
         return dateFormatter.string(from: date)
     }
     
-    func groupByDate(savedCurrencies: [Conversion]) -> [Date: [Conversion]]  {
+    func groupByDate() -> [Date: [Conversion]]  {
+        guard let savedCurrencies = fetchConversion() else { return [Date(): [Conversion]()]}
         let grouped = savedCurrencies.reduce(into: [Date: [Conversion]]()) { result, conversion in
             guard let date = conversion.date else { return }
     
@@ -42,6 +36,6 @@ final class HistoryViewModel: ObservableObject {
                 result[roundedDate] = [conversion]
             }
         }
-        return grouped
+        return Dictionary(uniqueKeysWithValues: grouped.sorted { $1.key > $0.key })
     }
 }
