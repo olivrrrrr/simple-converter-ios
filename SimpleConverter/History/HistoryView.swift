@@ -6,7 +6,7 @@ struct HistoryView: View {
 
     var body: some View {
         List {
-            ForEach(viewModel. groupByDateAndSort(), id: \.0) { tuple in
+            ForEach(viewModel.groupByDateAndSort(), id: \.0) { tuple in
                 let (date, currencies) = tuple
                 
                 Section(header: Text(viewModel.getFormattedDate(date: date))) {
