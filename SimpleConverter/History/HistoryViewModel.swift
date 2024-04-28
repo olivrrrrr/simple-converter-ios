@@ -6,19 +6,8 @@ final class HistoryViewModel: ObservableObject {
        static let title = "Conversion History"
     }
     
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
-    
     func fetchConversion() -> [Conversion]?  {
         CoreDataManager.shared.fetchConversion()
-    }
-    
-    func getFormattedDate(date: Date) -> String {
-        return dateFormatter.string(from: date)
     }
     
     func groupByDateAndSort() -> [(Date, [Conversion])] {

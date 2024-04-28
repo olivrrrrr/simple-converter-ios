@@ -9,7 +9,7 @@ struct HistoryView: View {
             ForEach(viewModel.groupByDateAndSort(), id: \.0) { tuple in
                 let (date, currencies) = tuple
                 
-                Section(header: Text(viewModel.getFormattedDate(date: date))) {
+                Section(header: Text(date.formatted(date: .long, time: .omitted))) {
                     ForEach(currencies, id: \.self) { savedCurrency in
                         HStack(spacing: .zero) {
                             typeOfConversion(savedCurrency)
