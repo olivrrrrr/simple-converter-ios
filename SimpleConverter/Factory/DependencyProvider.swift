@@ -13,6 +13,11 @@ struct DependencyProvider {
         return converterVC
     }
     
+    static var historyViewController: HistoryViewController {
+        let historyVC = HistoryViewController()
+        return historyVC
+    }
+    
     static var currencyService: CurrencyServicingType {
         let currencyService: CurrencyServicingType = NetworkManager()
         return currencyService
