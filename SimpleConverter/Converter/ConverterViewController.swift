@@ -226,88 +226,56 @@ extension ConverterViewController {
     }
     
     private func setupNumberPad() {
+        // If already built, don't recreate (viewDidLayoutSubviews may be called multiple times)
+        if !keyboardStack.arrangedSubviews.isEmpty {
+            return
+        }
+
+        keyboardStack.axis = .vertical
+        keyboardStack.distribution = .fillEqually
+        keyboardStack.alignment = .fill
+        keyboardStack.spacing = 8
+
         view.addSubview(keyboardStack)
-        keyboardStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             keyboardStack.topAnchor.constraint(equalTo: numberView.bottomAnchor),
-            keyboardStack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            keyboardStack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            keyboardStack.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            keyboardStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            keyboardStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            keyboardStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
-        
-        let buttonSize = view.frame.size.width / 3
-    
-        let zeroButton = UIButton(frame: CGRect(x: buttonSize,
-                                            y: keyboardStack.frame.size.height+buttonSize*3,
-                              width: buttonSize,
-                              height: buttonSize))
-        zeroButton.setTitleColor(.label, for: .normal)
-        zeroButton.backgroundColor = .systemBackground
-        zeroButton.setTitle("0", for: .normal)
-        zeroButton.tag = 0
-        keyboardStack.addSubview(zeroButton)
-        
-        let dotButton = UIButton(frame: CGRect(x: buttonSize*0,
-                                            y: keyboardStack.frame.size.height+buttonSize*3,
-                              width: buttonSize,
-                              height: buttonSize))
-        dotButton.setTitleColor(.label, for: .normal)
-        dotButton.backgroundColor = .systemBackground
-        dotButton.setTitle(".", for: .normal)
-        keyboardStack.addSubview(dotButton)
-        dotButton.addTarget(self, action: #selector(dotButtonPressed), for: .touchUpInside)
-        
-        let clearButton = UIButton(frame: CGRect(x: buttonSize*2,
-                                            y: keyboardStack.frame.size.height+buttonSize*3,
-                              width: buttonSize,
-                              height: buttonSize))
-        clearButton .setTitleColor(.label, for: .normal)
-        clearButton .backgroundColor = .systemBackground
-        clearButton .setTitle("C", for: .normal)
-        keyboardStack.addSubview(clearButton)
 
-        for num in 0..<3 {
-            let button = UIButton(frame: CGRect(x: buttonSize * CGFloat(num),
-                                                y: keyboardStack.frame.size.height+(buttonSize*2),
-                                  width: buttonSize,
-                                  height: buttonSize))
-            button.setTitleColor(.label, for: .normal)
-            button.backgroundColor = .systemBackground
-            button.setTitle("\(num+1)", for: .normal)
-            button.tag = num + 1
-            keyboardStack.addSubview(button)
-            button.addTarget(self, action: #selector(pressedNumber(_:)), for: .touchUpInside)
+        let rows: [[String]] = [["7","8","9"], ["4","5","6"], ["1","2","3"], [".","0","C"]]
+
+        for rowTitles in rows {
+            let rowStack = UIStackView()
+            rowStack.axis = .horizontal
+            rowStack.distribution = .fillEqually
+            rowStack.alignment = .fill
+            rowStack.spacing = 8
+
+            for title in rowTitles {
+                let button = UIButton(type: .system)
+                button.setTitle(title, for: .normal)
+                button.titleLabel?.font = .systemFont(ofSize: 28, weight: .medium)
+                button.setTitleColor(.label, for: .normal)
+                button.backgroundColor = .secondarySystemBackground
+                button.layer.cornerRadius = 10
+                button.clipsToBounds = true
+
+                if let number = Int(title) {
+                    button.tag = number
+                    button.addTarget(self, action: #selector(pressedNumber(_:)), for: .touchUpInside)
+                } else if title == "." {
+                    button.addTarget(self, action: #selector(dotButtonPressed), for: .touchUpInside)
+                } else if title == "C" {
+                    button.addTarget(self, action: #selector(clearNumber), for: .touchUpInside)
+                }
+
+                rowStack.addArrangedSubview(button)
+            }
+
+            keyboardStack.addArrangedSubview(rowStack)
         }
-        
-        for num in 0..<3 {
-            let button = UIButton(frame: CGRect(x: buttonSize * CGFloat(num),
-                                                y: keyboardStack.frame.size.height+(buttonSize*1),
-                                  width: buttonSize,
-                                  height: buttonSize))
-            button.setTitleColor(.label, for: .normal)
-            button.backgroundColor = .systemBackground
-            button.setTitle("\(num+4)", for: .normal)
-            button.tag = num + 4
-            keyboardStack.addSubview(button)
-            button.addTarget(self, action: #selector(pressedNumber(_:)), for: .touchUpInside)
-        }
-        
-        for num in 0..<3 {
-            let button = UIButton(frame: CGRect(x: buttonSize * CGFloat(num),
-                                                y: keyboardStack.frame.size.height+(buttonSize*0),
-                                  width: buttonSize,
-                                  height: buttonSize))
-            button.setTitleColor(.label, for: .normal)
-            button.backgroundColor = .systemBackground
-            button.setTitle("\(num+7)", for: .normal)
-            button.tag = num + 7
-            keyboardStack.addSubview(button)
-            button.addTarget(self, action: #selector(pressedNumber(_:)), for: .touchUpInside)
-        }
-        
-       // Action
-        zeroButton.addTarget(self, action: #selector(pressedNumber(_:)), for: .touchUpInside)
-        clearButton.addTarget(self, action: #selector(clearNumber), for: .touchUpInside)
     }
     
     private func setUpFlags() {
