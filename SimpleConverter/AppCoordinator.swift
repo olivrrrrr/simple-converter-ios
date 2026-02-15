@@ -35,9 +35,4 @@ final class AppCoordinator: Coordinator {
     func dismissSearchViewController() {
         navigationController.presentedViewController?.dismiss(animated: true)
     }
-    
-    func presentHistoryViewController() {
-        let historyViewController = DependencyProvider.historyViewController
-        navigationController.pushViewController(historyViewController, animated: true)
-    }
 }
