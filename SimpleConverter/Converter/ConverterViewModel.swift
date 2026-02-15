@@ -31,12 +31,12 @@ final class ConverterViewModel {
     var onUpdate: ((String) -> Void)?
     
     init(firstCurrencyFlag: String = "USD",
-         secondCurrencyFlag: String = "BTC",
+         secondCurrencyFlag: String = "GBP",
          isFirstFlagSelected: Bool = false,
          isSecondFlagSelected: Bool = false,
          dotPressed: Bool = false,
          currencyArray: [Currency] = [],
-         initialNumber: String = "0",
+         initialNumber: String = "0.00",
          secondNumber: String = "0.00",
          maxNumberOfIntegersDisplayed: Int = 10,
          currencyService: CurrencyServicingType) {
