@@ -70,7 +70,7 @@ final class ConverterViewController: UIViewController {
     
     @objc private func clearNumber() {
         initialNumber.text?.removeAll()
-        viewModel.initialNumber = "0"
+        viewModel.initialNumber = "0.00"
         viewModel.dotPressed = false
         initialNumber.text = viewModel.initialNumber
         updateSecondNumber()
@@ -78,7 +78,7 @@ final class ConverterViewController: UIViewController {
     
     @objc private func pressedNumber(_ sender: UIButton) {
         let tag = sender.tag
-        if initialNumber.text == "0" {
+        if initialNumber.text == "0.00" || initialNumber.text == "0" {
             initialNumber.text?.removeAll()
         }
         numberButtonTapped(tag: tag)
@@ -117,7 +117,7 @@ final class ConverterViewController: UIViewController {
     }
 
     private func resetUI() {
-        initialNumber.text = "0"
+        initialNumber.text = "0.00"
         secondNumber.text = "0.00"
         viewModel.dotPressed = false
     }
@@ -280,8 +280,10 @@ extension ConverterViewController {
     
     private func setUpFlags() {
         fetchCurrencyData(baseCurrency: viewModel.firstCurrencyFlag, secondaryCurrency: viewModel.secondCurrencyFlag)
-        flag.downloaded(from: "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/0a4185f21a034a7cb866ba7076d8c73b.png")
-        secondFlag.downloaded(from: "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/4caf2b16a0174e26a3482cea69c34cba.png")
+        // USD flag
+        flag.downloaded(from: "https://flagcdn.com/w80/us.png")
+        // GBP (UK) flag
+        secondFlag.downloaded(from: "https://flagcdn.com/w80/gb.png")
         
         flag.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(flagPressed)))
         flag.isUserInteractionEnabled = true
