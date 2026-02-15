@@ -6,13 +6,7 @@ final class ConverterViewController: UIViewController {
         let secondNumberSubView = UIView()
         return secondNumberSubView
     }()
-    
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
+
     private let numberView: UIView = {
         let numberView = UIView()
         numberView.translatesAutoresizingMaskIntoConstraints = false
@@ -143,15 +137,7 @@ extension ConverterViewController {
     private func setupUI() {
         title = ConverterViewModel.Constants.title
         view.backgroundColor = .systemBackground
-        
-        view.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
+
         view.addSubview(numberView)
         NSLayoutConstraint.activate([
             numberView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
