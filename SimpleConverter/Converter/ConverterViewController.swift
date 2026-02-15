@@ -82,6 +82,7 @@ final class ConverterViewController: UIViewController {
             initialNumber.text?.removeAll()
         }
         numberButtonTapped(tag: tag)
+        viewModel.createConversion()
         updateSecondNumber()
     }
     
@@ -96,9 +97,9 @@ final class ConverterViewController: UIViewController {
     }
     
     private func updateFlags(_ url: String) {
-        if self.viewModel.isFirstFlagSelected {
+        if viewModel.isFirstFlagSelected {
             flag.downloaded(from: url)
-        } else if self.viewModel.isSecondFlagSelected {
+        } else if viewModel.isSecondFlagSelected {
             secondFlag.downloaded(from: url)
         }
         self.resetUI()
@@ -110,6 +111,10 @@ final class ConverterViewController: UIViewController {
             initialNumber.text = viewModel.initialNumber
             viewModel.dotPressed = true
         }
+    }
+    
+    @objc private func historyButtonPressed() {
+        viewModel.historyButtonPresseed()
     }
     
     private func fetchCurrencyData(baseCurrency: String, secondaryCurrency: String) {
@@ -142,6 +147,11 @@ final class ConverterViewController: UIViewController {
 extension ConverterViewController {
     private func setupUI() {
         title = ConverterViewModel.Constants.title
+    
+        let historyButton = UIBarButtonItem(image: UIImage(systemName: "clock.arrow.circlepath"), style: .plain, target: self, action: #selector(historyButtonPressed))
+        historyButton.tintColor = .label
+        navigationItem.rightBarButtonItem = historyButton
+
         view.backgroundColor = .systemBackground
         
         view.addSubview(stackView)
